@@ -38,8 +38,23 @@ http://demo.res.ch:8080/ to access the main static page
 
 http://demo.res.ch:8080/api/animals/ to access the animal list
 
+## Step 4: AJAX requests with JQuery
 
+For this step, I modified the index.html of the static container to load a custom **animals.js** script. This script load the fist animal name of the list recovered from the express container to a defined class to be showed when browsing every 2 seconds.
 
+As no major modification where needed, the containers and the configuration are the same as the previous step. To make the implementation easy, I created a **main.sh** script that load in the proper order every container needed. (Attention! this script removes and delete every container created, so if a less "brutal" way of cleaining is necessary, the first two lines of the script has to be modified :) )
+
+ The chrome developpers tools are useful to see the AJAX requests sent by the browser, and this demo would not work without a reverse proxy because the **animalis.js** script uses itself the proxy to communicate with the other docker container.
+
+## Step 5: Dynamic reverse proxy configuration
+
+For this final step, I added a Dynamic reverse proxy configuration. I can easily pass the address of the two data-containers as enviromnet variables when running the proxy-charged one. This way the main problem of the last two steps (hardcoding of adresses) is solved.
+
+To do that i followed the webcast method, adding a php script **config-template.php** that will recover the two adresses from the envvar and uses them in the **apache2-foreground** file, recovered from the main image of apache.
+
+The configuration (except the adress that can be changed) is the same as the older steps. As usual, a **main_setup_situation.sh** is provided that will create a situation (few containers will be launched and two will show their IPAdress). To use the reverse_dynamic proxy, use the two IPAdress in the usual **run_container.sh** in it's folder, already prepared to run with the two new IPAdresses:
+
+**docker run -d -e STATIC_APP=172.17.0.6:80 -e DYNAMIC_APP=172.17.0.4:3000 --name apache_rp -p 8080:80 labo_apache_rp**
 
 
 
