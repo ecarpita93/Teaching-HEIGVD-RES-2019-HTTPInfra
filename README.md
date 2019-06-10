@@ -1,5 +1,7 @@
 # Teaching-HEIGVD-RES-2019-HTTPInfra
-Final labo of RES 2019
+Author :  Edoardo Carpita (for the additionnal steps, I worked with another student, Marion Dutu Launay, and the implementation is present in her repository)
+
+Date : Monday 10th June 2019
 
 ## Step 1: Static HTTP server with apache httpd
 
@@ -55,6 +57,12 @@ To do that i followed the webcast method, adding a php script **config-template.
 The configuration (except the adress that can be changed) is the same as the older steps. As usual, a **main_setup_situation.sh** is provided that will create a situation (few containers will be launched and two will show their IPAdress). To use the reverse_dynamic proxy, use the two IPAdress in the usual **run_container.sh** in it's folder, already prepared to run with the two new IPAdresses:
 
 **docker run -d -e STATIC_APP=172.17.0.6:80 -e DYNAMIC_APP=172.17.0.4:3000 --name apache_rp -p 8080:80 labo_apache_rp**
+
+## Additional Steps:
+
+As it wass allowed to work in groups of two, for the additional steps, I paired with another student (Marion Dutu Launay) to better implement and understand the different points. The implementation of those bonus steps are in her repository
+
+https://github.com/MarionDL/HTTPInfraLab
 
 
 
