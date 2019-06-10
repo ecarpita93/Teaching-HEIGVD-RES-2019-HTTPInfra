@@ -1,3 +1,4 @@
 #!/bin/bash
 
-docker run -p 9090:80 labo_apache_php 
+docker run -d --name ap_static labo_apache_php 
+docker inspect ap_static | grep -i ipaddress
